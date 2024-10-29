@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle de Ponto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1 id="titulo">Portal de Batida de Ponto - Fábrica de Chocolate</h1>
+    <footer class="rodape">Criado por Roger Arraz & Giovanna Couto & Pedro Luiz Sousa</footer>
+
+    <div id="alerta-registro-ponto" class="hidden">
+        <p>Ponto registrado com sucesso!</p>
+        <button id="alerta-registro-ponto-fechar">X</button>
+    </div>
+
+    <div id="container">
+        <div class="data-hora">
+            <p id="dia-semana"></p>
+            <p id="dia-mes-ano"></p>
+            <p id="hora-min-seg"></p>
+        </div>
+
+        <div id="div-btn-bater">
+            <div id="div-btn-bater-ponto">
+                <button class="btn-bater-ponto" id="btn-bater-ponto">Bater ponto!</button>
+            </div>
+            <div id="div-btn-historico">
+                <button id="btn-historico" onclick="window.location.href='historico.html'">Ver Histórico</button>
+            </div>
+            <div id="div-btn-bater-ponto-antigo">
+                <button class="btn-historico-antigo" id="btn-bater-ponto-antigo" onclick="document.getElementById('dialogPontoVelho').showModal()">Ponto Antigo</button>
+            </div>
+            <div id="div-btn-bater-justificar">
+                <button id="btn-bater-justificar" onclick="document.getElementById('dialog-justificativa').showModal()">Justificar</button>
+            </div>
+        </div>
+    </div>
+
+    <dialog id="dialog-ponto">
+        <p id="dialog-data"></p>
+        <p id="dialog-hora"></p>
+        <select name="tipos-ponto" id="tipos-ponto">
+            <option value="entrada">Entrada</option>
+            <option value="intervalo">Intervalo</option>
+            <option value="volta-intervalo">Volta Intervalo</option>
+            <option value="saida">Saída</option>
+        </select>
+        <p></p>
+        <textarea id="observationText" placeholder="Observação (opcional)" rows="3"></textarea>
+        <p></p>
+        <button id="btn-dialog-bater-ponto">Registrar ponto</button>
+        <p id="dialog-last-register"></p>
+        <button id="btn-dialog-fechar">X</button>
+    </dialog>
+
+    <dialog id="dialogPontoVelho">
+        <h2>Registrar Pontos no Passado</h2>
+        <form id="form-ponto-passado" class="form-ponto-passado">
+            <label for="data-ponto">Data:</label>
+            <input type="date" id="data-ponto" required>
+            <label for="hora-ponto">Hora:</label>
+            <input type="time" id="hora-ponto" required>
+            <label for="tipo-ponto">Tipo:</label>
+            <select id="tipo-ponto" required>
+                <option value="">Selecione</option>
+                <option value="Entrada">Entrada</option>
+                <option value="Saída">Saída</option>
+                <option value="Intervalo">Intervalo</option>
+                <option value="Volta do Intervalo">Volta do Intervalo</option>
+            </select>
+            <p></p>
+            <textarea id="observationText1" placeholder="Observação (opcional)" rows="3"></textarea>
+            <p></p>
+            <button type="button" id="btn-dialog-bater-ponto-antigo">Registrar</button>
+            <button type="button" id="btn-cancelar">Cancelar</button>
+        </form>
+    </dialog>
+
+    <dialog id="dialog-justificativa">
+        <h2>Justificar Ausência</h2>
+        <input type="date" id="absenceDate" required />
+        <p></p>
+        <textarea id="observationTextJus" placeholder="Observação (opcional)" rows="3"></textarea>
+        <p></p>
+        <label>
+            <input type="checkbox" id="toggleFileCheckbox" onclick="toggleFileInput()" />
+            Anexar arquivo
+        </label>
+        <div id="fileInputContainer" style="display: none;">
+            <p></p>
+            <input type="file" id="absenceFile" />
+        </div>
+        <p></p>
+        <button id="btn-dialog-bater-justificativa">Registrar Ausência</button>
+        <p id="dialog-last-register-justificativa"></p>
+        <button id="btn-dialog-fechar-justificativa">X</button>
+    </dialog>
+
+    <div id="alerta-registro-justificativa" class="hidden">
+        <p>Justificativa registrada com sucesso!</p>
+        <button id="alerta-registro-justificativa-fechar">X</button>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
